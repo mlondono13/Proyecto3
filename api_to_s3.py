@@ -21,6 +21,10 @@ with open(file_name, 'w') as f:
 
 # 3. Carga a S3
 s3 = boto3.client('s3')
+response = s3.list_buckets()
+
+for bucket in response['Buckets']:
+    print(bucket["Name"])
 s3.upload_file(file_name, BUCKET_NAME, RAW_ZONE_PATH + file_name)
 
 print(f"Archivo cargado exitosamente a s3://{BUCKET_NAME}/{RAW_ZONE_PATH}{file_name}")
