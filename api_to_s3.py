@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 
 # Configura el nombre de tu bucket y carpeta destino (zona raw)
-BUCKET_NAME = 'proyecto3'
+BUCKET_NAME = 'proyecto3-s3'
 RAW_ZONE_PATH = 'raw/fakestore/products/'
 
 # 1. Captura datos desde la API
