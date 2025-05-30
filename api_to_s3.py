@@ -1,30 +1,19 @@
 import requests
 import boto3
-import json
 from datetime import datetime
 
-# Configura el nombre de tu bucket y carpeta destino (zona raw)
-BUCKET_NAME = 'proyecto3-s3'
-RAW_ZONE_PATH = 'raw/fakestore/products/'
+BUCKET = "proyecto3-s3"
 
-# 1. Captura datos desde la API
-url = "https://fakestoreapi.com/products"
-response = requests.get(url)
-data = response.json()
+def upload_to_s3(data, endpoint):
+    s3 = boto3.client('s3')
+    date = datetime.now().strftime("%Y%m%d_%H%M%S")
+    key = f"raw/api/{endpoint}/{date}.json"
+    s3.put_object(Bucket=BUCKET, Key=key, Body=data)
 
-# 2. Guarda temporalmente en archivo local
-timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-file_name = f"products_{timestamp}.json"
-
-with open(file_name, 'w') as f:
-    json.dump(data, f, indent=2)
-
-# 3. Carga a S3
-s3 = boto3.client('s3')
-response = s3.list_buckets()
-
-for bucket in response['Buckets']:
-    print(bucket["Name"])
-s3.upload_file(file_name, BUCKET_NAME, RAW_ZONE_PATH + file_name)
-
-print(f"Archivo cargado exitosamente a s3://{BUCKET_NAME}/{RAW_ZONE_PATH}{file_name}")
+# Descargar datos de la API
+endpoints = ["products", "users", "carts"]
+for endpoint in endpoints:
+    url = f"https://fakestoreapi.com/{endpoint}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        upload_to_s3(response.text, endpoint)
