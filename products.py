@@ -3,7 +3,7 @@ import requests
 
 # Conexión a tu base de datos MySQL
 conn = pymysql.connect(
-    host="proyecto3-db.ctkwuucka690.us-east-1.rds.amazonaws.com",
+    host="p3-db.ctkwuucka690.us-east-1.rds.amazonaws.com",
     user="user",
     password="admin123",
     db="proyecto3"
