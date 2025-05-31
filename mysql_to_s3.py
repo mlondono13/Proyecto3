@@ -2,10 +2,10 @@ import json
 import mysql.connector
 
 conn = mysql.connector.connect(
-    host='tu-endpoint-rds',
+    host='p3-db.ctkwuucka690.us-east-1.rds.amazonaws.com',
     user='admin',
     password='admin123',
-    database='nombre_de_tu_db'
+    database='proyecto3'
 )
 cursor = conn.cursor()
 
