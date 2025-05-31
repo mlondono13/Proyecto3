@@ -1,12 +1,11 @@
-import pymysql
 import json
+import mysql.connector
 
-# Conexión a MySQL
-conn = pymysql.connect(
-    host="p3-db.ctkwuucka690.us-east-1.rds.amazonaws.com",
-    user="user",
-    password="admin123",
-    db="proyecto3"
+conn = mysql.connector.connect(
+    host='tu-endpoint-rds',
+    user='admin',
+    password='admin123',
+    database='nombre_de_tu_db'
 )
 cursor = conn.cursor()
 
