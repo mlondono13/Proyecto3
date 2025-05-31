@@ -1,8 +1,7 @@
 import pymysql
 import json
-import requests
 
-# Configuración de MySQL
+# Conexión a MySQL
 conn = pymysql.connect(
     host="proyecto3-db.ctkwuucka690.us-east-1.rds.amazonaws.com",
     user="user",
@@ -13,19 +12,14 @@ cursor = conn.cursor()
 
 # Ejecutar query
 cursor.execute("SELECT * FROM products")
-data = cursor.fetchall()
+rows = cursor.fetchall()
+columns = [desc[0] for desc in cursor.description]
 
-# Serializar a JSON
-json_data = json.dumps(data)
+# Convertir resultados a una lista de diccionarios
+data = [dict(zip(columns, row)) for row in rows]
 
-# Ruta pública de subida (asegúrate que el bucket lo permita)
-upload_url = "https://proyecto3-s3.s3.amazonaws.com/raw/mysql/products.json"
+# Guardar como archivo JSON local
+with open("products.json", "w") as f:
+    json.dump(data, f, indent=2)
 
-# Subir con PUT
-response = requests.put(upload_url, data=json_data, headers={"Content-Type": "application/json"})
-
-# Verificar respuesta
-if response.status_code == 200:
-    print("Archivo subido exitosamente a S3.")
-else:
-    print(f"Error al subir: {response.status_code} - {response.text}")
+print("Archivo 'products.json' generado exitosamente.")
