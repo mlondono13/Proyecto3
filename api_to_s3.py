@@ -19,7 +19,7 @@ for endpoint in endpoints:
             f.write(response.text)
         
         # Subir a S3 usando AWS CLI
-        s3_key = f"s3a://{BUCKET}/{BASE_PATH}/{endpoint}/{filename}"
+        s3_key = f"s3://{BUCKET}/{BASE_PATH}/{endpoint}/{filename}"
         subprocess.run(["aws", "s3", "cp", filename, s3_key], check=True)
         print(f"Subido a: {s3_key}")
         
