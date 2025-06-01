@@ -2,7 +2,7 @@ import requests
 import boto3
 from datetime import datetime
 
-BUCKET = "proyecto3-s3"
+BUCKET = "proyecto3-bigdata"
 
 def upload_to_s3(data, endpoint):
     s3 = boto3.client('s3')
