@@ -1,31 +1,22 @@
 import pandas as pd
-import requests
 import pyarrow as pa
 import pyarrow.parquet as pq
 import os
 
-# URLs públicas de tus JSONs en S3 (ajusta a tus archivos reales)
-urls = [
-    "https://proyecto3-s3.s3.amazonaws.com/raw/api/products/20250531_002052.json",
-    # Agrega más archivos según necesites
-]
+# Ruta local al archivo JSON que contiene todos los productos
+filename = "products.json"
 
-# Descargar y leer archivos JSON
-dataframes = []
-for url in urls:
-    response = requests.get(url)
-    response.raise_for_status()
-    df = pd.read_json(response.content)
-    dataframes.append(df)
+# Verifica que el archivo exista
+if os.path.exists(filename):
+    # Leer JSON local directamente a DataFrame
+    df = pd.read_json(filename)
 
-# Unir todos los DataFrames
-if dataframes:
-    final_df = pd.concat(dataframes, ignore_index=True)
-    print(f"Total registros: {len(final_df)}")
+    print(f"Total registros: {len(df)}")
 
     # Guardar en Parquet localmente
-    table = pa.Table.from_pandas(final_df)
+    table = pa.Table.from_pandas(df)
     pq.write_table(table, "products.parquet")
+
     print("Archivo 'products.parquet' generado localmente.")
 else:
-    print("No se encontraron datos para procesar.")
+    print(f"Archivo '{filename}' no encontrado.")
