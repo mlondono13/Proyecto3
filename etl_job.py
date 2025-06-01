@@ -6,7 +6,7 @@ import os
 
 # URLs públicas de tus JSONs en S3 (ajusta a tus archivos reales)
 urls = [
-    "https://proyecto3-bigdata.s3.amazonaws.com/raw/api/products/product1.json",
+    "https://proyecto3-bigdata.s3.amazonaws.com/raw/api/products/20250531_002052.json",
     # Agrega más archivos según necesites
 ]
 
