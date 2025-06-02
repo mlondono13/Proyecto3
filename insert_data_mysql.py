@@ -1,7 +1,11 @@
+from dotenv import load_dotenv
+import os
 import requests
 import json
 import pymysql
 from datetime import datetime
+
+load_dotenv()
 
 # URLs API
 urls = {
@@ -20,10 +24,10 @@ for key, url in urls.items():
 
 # Conexión a MySQL
 conn = pymysql.connect(
-    host="20.15.106.113",      # Cambia por IP/host de tu BD
-    user="root",
-    password="root",
-    database="proyecto3"
+    host=os.getenv("DB_HOST"),      # Cambia por IP/host de tu BD
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME")
 )
 cursor = conn.cursor()
 

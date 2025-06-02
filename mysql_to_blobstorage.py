@@ -3,15 +3,17 @@ import json
 from decimal import Decimal
 from datetime import datetime, date
 from azure.storage.blob import BlobServiceClient
+from dotenv import load_dotenv
+import os
 
 # Configuración MySQL
-MYSQL_HOST = "20.15.106.113"
-MYSQL_USER = "root"
-MYSQL_PASS = "root"
-MYSQL_DB = "proyecto3"
+MYSQL_HOST = os.getenv("DB_HOST")
+MYSQL_USER = os.getenv("DB_USER")
+MYSQL_PASS = os.getenv("DB_PASSWORD")
+MYSQL_DB = os.getenv("DB_NAME")
 
 # Configuración Azure Blob Storage
-AZURE_CONN_STR = "DefaultEndpointsProtocol=https;AccountName=proyecto3bigdata;AccountKey=6fWy4MW0wCUmZYPE83RwuokuJa24xf6QsSrHvRvHXC7k3nBvZVZYo2+JkEVHzswW/8PC0JnBXbOL+ASt2piAbg==;EndpointSuffix=core.windows.net"
+AZURE_CONN_STR = os.getenv("CONNECTION_STRING")
 CONTAINER_NAME = "raw"
 
 def convertir_tipos(obj):

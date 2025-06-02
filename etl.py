@@ -1,10 +1,14 @@
 from pyspark.sql.functions import col
 from pyspark.sql import SparkSession
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 storage_account_name = "proyecto3bigdata"
 
 spark = SparkSession.builder.appName("ETL_FakeStore") \
-    .config(f"fs.azure.account.key.{storage_account_name}.blob.core.windows.net", "6fWy4MW0wCUmZYPE83RwuokuJa24xf6QsSrHvRvHXC7k3nBvZVZYo2+JkEVHzswW/8PC0JnBXbOL+ASt2piAbg==") \
+    .config(f"fs.azure.account.key.{storage_account_name}.blob.core.windows.net", os.getenv("AZURE_KEY")) \
     .getOrCreate()
 # Configuración conexión a Blob Storage (montaje o acceso directo con SAS o credenciales)
 container_name_raw = "raw"

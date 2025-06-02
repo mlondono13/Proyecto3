@@ -1,13 +1,17 @@
 from pyspark.sql import SparkSession
 import matplotlib.pyplot as plt
 import seaborn as sns
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 storage_account_name = "proyecto3bigdata"
-storage_account_access_key = "6fWy4MW0wCUmZYPE83RwuokuJa24xf6QsSrHvRvHXC7k3nBvZVZYo2+JkEVHzswW/8PC0JnBXbOL+ASt2piAbg=="
+storage_account_access_key = os.getenv("AZURE_KEY")
 container_name = "refined"
 
 spark = SparkSession.builder.appName("ETL_FakeStore") \
-    .config(f"fs.azure.account.key.{storage_account_name}.blob.core.windows.net", "6fWy4MW0wCUmZYPE83RwuokuJa24xf6QsSrHvRvHXC7k3nBvZVZYo2+JkEVHzswW/8PC0JnBXbOL+ASt2piAbg==") \
+    .config(f"fs.azure.account.key.{storage_account_name}.blob.core.windows.net", storage_account_access_key) \
     .getOrCreate()
 
 spark.conf.set(f"fs.azure.account.key.{storage_account_name}.blob.core.windows.net", storage_account_access_key)

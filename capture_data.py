@@ -1,12 +1,15 @@
 import requests
 from azure.storage.blob import BlobServiceClient
+from dotenv import load_dotenv
 import os
+
+load_dotenv()
 
 # URL de la API de productos
 url = "https://fakestoreapi.com/products"
 
 # Conexión a Azure Blob Storage (pon aquí tu connection string)
-connection_string = "DefaultEndpointsProtocol=https;AccountName=proyecto3bigdata;AccountKey=6fWy4MW0wCUmZYPE83RwuokuJa24xf6QsSrHvRvHXC7k3nBvZVZYo2+JkEVHzswW/8PC0JnBXbOL+ASt2piAbg==;EndpointSuffix=core.windows.net"
+connection_string = os.getenv("CONNECTION_STRING")
 
 # Nombre del contenedor y blob donde guardarás el JSON
 container_name = "raw"
