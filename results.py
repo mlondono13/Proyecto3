@@ -8,7 +8,7 @@ load_dotenv()
 
 storage_account_name = os.getenv("STORAGE_NAME")
 storage_account_access_key = os.getenv("AZURE_KEY")
-container_name = "refined"
+container_name = os.getenv("CONTAINER_REFINED")
 
 spark = SparkSession.builder.appName("ETL_FakeStore") \
     .config(f"fs.azure.account.key.{storage_account_name}.blob.core.windows.net", storage_account_access_key) \

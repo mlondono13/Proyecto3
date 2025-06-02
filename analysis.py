@@ -6,7 +6,7 @@ import os
 load_dotenv()
 
 storage_account_name = os.getenv("STORAGE_NAME")
-container_name_trusted = "trusted"
+container_name_trusted = os.getenv("CONTAINER_TRUSTED")
 
 spark = SparkSession.builder.appName("ETL_FakeStore") \
     .config(f"fs.azure.account.key.{storage_account_name}.blob.core.windows.net", os.getenv("AZURE_KEY")) \
@@ -32,7 +32,7 @@ avg_price_by_category = spark.sql("""
 avg_price_by_category.show()
 
 # Guardar resultados en Refined
-container_name_refined = "refined"
+container_name_refined = os.getenv("CONTAINER_REFINED")
 base_path_refined = f"wasbs://{container_name_refined}@{storage_account_name}.blob.core.windows.net/"
 
 avg_price_by_category.write.mode("overwrite").parquet(f"{base_path_refined}/avg_price_by_category")

@@ -16,7 +16,7 @@ MYSQL_DB = os.getenv("DB_NAME")
 
 # Configuración Azure Blob Storage
 AZURE_CONN_STR = os.getenv("CONNECTION_STRING")
-CONTAINER_NAME = "raw"
+CONTAINER_NAME = os.getenv("CONTAINER_RAW")
 
 def convertir_tipos(obj):
     if isinstance(obj, list):

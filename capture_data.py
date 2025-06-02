@@ -12,7 +12,7 @@ url = "https://fakestoreapi.com/products"
 connection_string = os.getenv("CONNECTION_STRING")
 
 # Nombre del contenedor y blob donde guardarás el JSON
-container_name = "raw"
+container_name = os.getenv("CONTAINER_RAW")
 blob_service_client = BlobServiceClient.from_connection_string(connection_string)
 container_client = blob_service_client.get_container_client(container_name)
 

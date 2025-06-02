@@ -11,8 +11,8 @@ spark = SparkSession.builder.appName("ETL_FakeStore") \
     .config(f"fs.azure.account.key.{storage_account_name}.blob.core.windows.net", os.getenv("AZURE_KEY")) \
     .getOrCreate()
 # Configuración conexión a Blob Storage (montaje o acceso directo con SAS o credenciales)
-container_name_raw = "raw"
-container_name_trusted = "trusted"
+container_name_raw = os.getenv("CONTAINER_RAW")
+container_name_trusted = os.getenv("CONTAINER_TRUSTED")
 base_path_raw = f"wasbs://{container_name_raw}@{storage_account_name}.blob.core.windows.net/api"
 base_path_trusted = f"wasbs://{container_name_trusted}@{storage_account_name}.blob.core.windows.net/processed"
 
