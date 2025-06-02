@@ -6,6 +6,8 @@ from azure.storage.blob import BlobServiceClient
 from dotenv import load_dotenv
 import os
 
+load_dotenv()
+
 # Configuración MySQL
 MYSQL_HOST = os.getenv("DB_HOST")
 MYSQL_USER = os.getenv("DB_USER")
