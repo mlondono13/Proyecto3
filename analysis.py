@@ -5,7 +5,7 @@ import os
 
 load_dotenv()
 
-storage_account_name = "proyecto3bigdata"
+storage_account_name = os.getenv("STORAGE_NAME")
 container_name_trusted = "trusted"
 
 spark = SparkSession.builder.appName("ETL_FakeStore") \

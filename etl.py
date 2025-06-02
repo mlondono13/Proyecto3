@@ -5,7 +5,7 @@ import os
 
 load_dotenv()
 
-storage_account_name = "proyecto3bigdata"
+storage_account_name = os.getenv("STORAGE_NAME")
 
 spark = SparkSession.builder.appName("ETL_FakeStore") \
     .config(f"fs.azure.account.key.{storage_account_name}.blob.core.windows.net", os.getenv("AZURE_KEY")) \

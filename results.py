@@ -6,7 +6,7 @@ import os
 
 load_dotenv()
 
-storage_account_name = "proyecto3bigdata"
+storage_account_name = os.getenv("STORAGE_NAME")
 storage_account_access_key = os.getenv("AZURE_KEY")
 container_name = "refined"
 
