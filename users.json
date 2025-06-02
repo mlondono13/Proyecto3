@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "email": "john@gmail.com",
+        "username": "johnd",
+        "password": "m38rmF$",
+        "name_first": "john",
+        "name_last": "doe",
+        "phone": "1-570-236-7033"
+    },
+    {
+        "id": 2,
+        "email": "morrison@gmail.com",
+        "username": "mor_2314",
+        "password": "83r5^_",
+        "name_first": "david",
+        "name_last": "morrison",
+        "phone": "1-570-236-7033"
+    },
+    {
+        "id": 3,
+        "email": "kevin@gmail.com",
+        "username": "kevinryan",
+        "password": "kev02937@",
+        "name_first": "kevin",
+        "name_last": "ryan",
+        "phone": "1-567-094-1345"
+    },
+    {
+        "id": 4,
+        "email": "don@gmail.com",
+        "username": "donero",
+        "password": "ewedon",
+        "name_first": "don",
+        "name_last": "romer",
+        "phone": "1-765-789-6734"
+    },
+    {
+        "id": 5,
+        "email": "derek@gmail.com",
+        "username": "derek",
+        "password": "jklg*_56",
+        "name_first": "derek",
+        "name_last": "powell",
+        "phone": "1-956-001-1945"
+    },
+    {
+        "id": 6,
+        "email": "david_r@gmail.com",
+        "username": "david_r",
+        "password": "3478*#54",
+        "name_first": "david",
+        "name_last": "russell",
+        "phone": "1-678-345-9856"
+    },
+    {
+        "id": 7,
+        "email": "miriam@gmail.com",
+        "username": "snyder",
+        "password": "f238&@*$",
+        "name_first": "miriam",
+        "name_last": "snyder",
+        "phone": "1-123-943-0563"
+    },
+    {
+        "id": 8,
+        "email": "william@gmail.com",
+        "username": "hopkins",
+        "password": "William56$hj",
+        "name_first": "william",
+        "name_last": "hopkins",
+        "phone": "1-478-001-0890"
+    },
+    {
+        "id": 9,
+        "email": "kate@gmail.com",
+        "username": "kate_h",
+        "password": "kfejk@*_",
+        "name_first": "kate",
+        "name_last": "hale",
+        "phone": "1-678-456-1934"
+    },
+    {
+        "id": 10,
+        "email": "jimmie@gmail.com",
+        "username": "jimmie_k",
+        "password": "klein*#%*",
+        "name_first": "jimmie",
+        "name_last": "klein",
+        "phone": "1-104-001-4567"
+    }
+]
