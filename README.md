@@ -26,5 +26,82 @@ El pipeline incluye la captura de datos, su ingesta en almacenamiento tipo data 
 
 - No se usó Athena para consulta de datos, ya que la implementación fue en Azure.
 
+---
 
+## 2. Información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas
+
+- **Arquitectura por zonas:** datos se almacenan en contenedores `raw`, `trusted`, y `refined` en Azure Blob Storage.
+- **Separación por scripts modulares** para cada etapa: captura, ingesta, procesamiento, análisis.
+- **Automatización con Azure Databricks Jobs**: el flujo completo corre automáticamente sin intervención manual.
+- **Persistencia estructurada y formatos estándar** (`JSON`, `Parquet`) para almacenamiento intermedio y final.
+- **Notebooks en Databricks** para facilitar pruebas, desarrollo y seguimiento del procesamiento.
+
+---
+
+## 3. Descripción del ambiente de desarrollo y técnico
+### 3.1 Cómo se compila y ejecuta
+
+1. **Captura de datos desde la API**
+   - Script: `capture_data.py`
+   - Descarga datos de `/products`, `/users` y `/carts` desde https://fakestoreapi.com y los guarda en archivos `.json`.
+
+2. **Ingesta a base de datos relacional simulada**
+   - Script: `insert_data_mysql.py`
+   - Carga los archivos `.json` a una base de datos MySQL ejecutándose en una VM de Azure.
+
+3. **Extracción desde la base de datos a Azure Blob Storage**
+   - Script: `mysql_to_blobstorage.py`
+   - Extrae los datos desde la base MySQL y los sube a la zona `raw/relational/` de Blob Storage.
+
+4. **Procesamiento ETL**
+   - Script: `etl.py` (Notebook en Databricks)
+   - Limpia y une datos de la API con la base relacional y los guarda en la zona `trusted`.
+
+5. **Análisis de datos**
+   - Script: `analysis.py` (Notebook en Databricks)
+   - Realiza análisis descriptivo sobre los datos procesados.
+   - Resultados almacenados en `refined`.
+
+6. **Automatización**
+   - Se creó un **Job en Databricks** que ejecuta en secuencia los notebooks de ETL y análisis.
+
+### 3.2 Detalles del desarrollo
+
+- Lenguaje principal: **Python 3**
+- Desarrollo distribuido entre scripts locales y notebooks en Databricks.
+- Organización modular: cada etapa tiene su propio script/notebook independiente.
+
+### 3.3 Detalles técnicos
+
+- **Azure Blob Storage:**
+  - `raw/` → Datos crudos desde API y MySQL
+  - `trusted/` → Datos procesados
+  - `refined/` → Resultados del análisis
+
+- **Base de datos relacional:**
+  - MySQL 8.0 corriendo en una VM Ubuntu en Azure.
+  - Tablas simuladas de usuarios, carritos, y productos.
+
+- **Cluster de procesamiento:**
+  - Azure Databricks (clúster autoservicio)
+
+### 3.4 Descripción y configuración de parámetros del proyecto
+
+- Variables de entorno requeridas:
+  - `AZURE_STORAGE_CONNECTION_STRING`
+  - Credenciales de conexión a MySQL (host, puerto, usuario, contraseña)
+- Configuración del Job en Databricks:
+  - Secuencia de tareas:
+    1. `etl.py`
+    2. `analysis.py`
+  - Programado para ejecución manual o periódica.
+
+---
+
+## 4. Video de sustentación
+
+🎥 Video disponible en:  
+[https://www.youtube.com/watch?v=gv8I-KAUOxU&feature=youtu.be](https://www.youtube.com/watch?v=gv8I-KAUOxU&feature=youtu.be)
+
+---
 Video: https://youtu.be/gv8I-KAUOxU
