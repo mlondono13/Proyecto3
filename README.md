@@ -1,7 +1,7 @@
 # ST0263 - TÓPICOS ESPECIALES DE TELEMÁTICA
 ## Estudiantes:
 ## Luis Fernando Posada Cano - lfposadac@eafit.edu.co
-## Juan Martin Betancur Rios - jbetan56@eafit.edu.co
+## Jose Miguel Burgos Cuartas - jmburgoc@eafit.edu.co
 ## Marcela Londoño Leon - mlondonol@eafit.edu.co
 ## Juanmartin Betancur Arango - jbetancur5@eafit.edu.co
 ## Proyecto3: Automatización de un proceso batch de datos big data en azure
@@ -102,6 +102,34 @@ El pipeline incluye la captura de datos, su ingesta en almacenamiento tipo data 
 
 🎥 Video disponible en:  
 [https://www.youtube.com/watch?v=gv8I-KAUOxU&feature=youtu.be](https://www.youtube.com/watch?v=gv8I-KAUOxU&feature=youtu.be)
+
+## 5. Otra información que considere relevante para esta actividad
+
+Durante el desarrollo de este proyecto se exploraron herramientas modernas para procesamiento batch de datos en la nube. Se destaca lo siguiente:
+
+La automatización con Databricks Jobs simplificó la orquestación sin necesidad de herramientas adicionales como Airflow.
+
+El uso de Azure Blob Storage como Data Lake permitió mantener una arquitectura limpia separando las zonas de datos (raw, trusted, refined).
+
+La simulación de una base de datos relacional en una VM fue útil para replicar escenarios reales de integración de múltiples fuentes.
+
+La elección de la Fake Store API resultó apropiada para simular un entorno de ecommerce, y permitió integrar datos con estructura variada (productos, carritos, usuarios).
+
+🔗 Referencias y créditos
+Fake Store API – https://fakestoreapi.com/
+
+Video de referencia para EMR con Spark (como guía inicial del enfoque):
+https://www.youtube.com/watch?v=ZFns7fvBCH4
+
+Documentación oficial de:
+
+Azure Databricks: https://learn.microsoft.com/en-us/azure/databricks/
+
+Azure Blob Storage: https://learn.microsoft.com/en-us/azure/storage/blobs/
+
+Curso ST0263 - Recursos compartidos por el profesor
+
+Stack Overflow – Soluciones a errores con conexión a MySQL y scripts en Python
 
 ---
 Video: https://youtu.be/gv8I-KAUOxU
